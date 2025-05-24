@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { auth } from "../firebase";
+import { auth } from "../firebase"; // ✅ Make sure firebase.js is at src/firebase.js
 
 const Signup = () => {
   const [name, setName] = useState('');
@@ -18,23 +18,21 @@ const Signup = () => {
       navigate('/login');
     } catch (err) {
       alert(err.message);
-    }z
+    }
   };
 
   return (
-    <>
-      <form onSubmit={signup}>
-        <h2>Signup</h2>
-        <input placeholder="Full Name" onChange={(e) => setName(e.target.value)} required />
-        <input placeholder="Email" type="email" onChange={(e) => setEmail(e.target.value)} required />
-        <input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)} required />
-        <button type="submit">Signup</button>
-        <p>
-          Already have an account?{' '}
-          <Link to="/login">Login</Link>
-        </p>
-      </form>
-    </>
+    <form onSubmit={signup}>
+      <h2>Signup</h2>
+      <input placeholder="Full Name" onChange={(e) => setName(e.target.value)} required />
+      <input placeholder="Email" type="email" onChange={(e) => setEmail(e.target.value)} required />
+      <input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)} required />
+      <button type="submit">Signup</button>
+      <p>
+        Already have an account?{' '}
+        <Link to="/login">Login</Link>
+      </p>
+    </form>
   );
 };
 
